@@ -15,6 +15,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import projectsData from "../projects.json";
 
@@ -384,6 +385,7 @@ export default function Home() {
       </Box>
 
       <ProjectsSection />
+      <SiteFooter />
     </Box>
   );
 }
