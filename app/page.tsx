@@ -1,19 +1,17 @@
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import {
-  AppBar,
   Box,
   Button,
   Card,
   CardContent,
   Chip,
   Container,
-  Link,
   Paper,
   Stack,
-  Toolbar,
   Typography,
 } from "@mui/material";
+import { SiteHeader } from "./site-header";
 
 const primitives = [
   {
@@ -63,52 +61,7 @@ const sectionSx = {
 export default function Home() {
   return (
     <Box component="main">
-      <AppBar position="static" elevation={0} color="transparent">
-        <Container maxWidth="lg" sx={sectionSx}>
-          <Toolbar
-            disableGutters
-            sx={{
-              gap: { xs: 1.5, sm: 3 },
-              minHeight: 76,
-            }}
-          >
-            <Link
-              href="#top"
-              underline="none"
-              color="text.primary"
-              sx={{ alignItems: "center", display: "inline-flex", gap: 1.25, fontWeight: 800 }}
-            >
-              <Box
-                component="img"
-                src="/logo.svg"
-                alt=""
-                sx={{
-                  bgcolor: "background.paper",
-                  border: 1,
-                  borderColor: "divider",
-                  borderRadius: 1,
-                  height: 38,
-                  objectFit: "contain",
-                  p: 0.5,
-                  width: 38,
-                }}
-              />
-              Pontmore
-            </Link>
-            <Stack component="nav" direction="row" spacing={0.25} sx={{ ml: "auto" }}>
-              {[
-                ["Protocol", "#protocol"],
-                ["Build", "#build"],
-                ["Start", "#start"],
-              ].map(([label, href]) => (
-                <Button key={href} component="a" href={href} color="inherit" size="small" sx={{ minWidth: "auto", px: { xs: 0.75, sm: 1 } }}>
-                  {label}
-                </Button>
-              ))}
-            </Stack>
-          </Toolbar>
-        </Container>
-      </AppBar>
+      <SiteHeader />
 
       <Container
         id="top"
@@ -186,7 +139,7 @@ export default function Home() {
           elevation={0}
           sx={{
             background:
-              "linear-gradient(135deg, rgba(47, 158, 68, 0.12), transparent 38%), linear-gradient(225deg, rgba(240, 140, 0, 0.18), transparent 42%), #fffdf8",
+              "linear-gradient(135deg, rgba(87, 194, 106, 0.14), transparent 38%), linear-gradient(225deg, rgba(240, 140, 0, 0.16), transparent 42%), #17251b",
             border: 1,
             borderColor: "divider",
             borderRadius: 1,
@@ -228,7 +181,7 @@ export default function Home() {
           <Paper
             elevation={0}
             sx={{
-              bgcolor: "rgba(36, 107, 143, 0.09)",
+              bgcolor: "rgba(87, 194, 106, 0.08)",
               border: 1,
               borderColor: "divider",
               borderRadius: 1,
@@ -305,7 +258,7 @@ export default function Home() {
         </Box>
       </Container>
 
-      <Box id="build" component="section" sx={{ bgcolor: "#18241b", color: "#fff", my: 4.25 }}>
+      <Box id="build" component="section" sx={{ bgcolor: "#07110a", color: "#fff", my: 4.25 }}>
         <Container
           maxWidth="lg"
           sx={{
@@ -343,9 +296,9 @@ export default function Home() {
                 elevation={0}
                 sx={{
                   alignItems: "center",
-                  bgcolor: "rgba(255, 255, 255, 0.08)",
+                  bgcolor: "rgba(255, 255, 255, 0.06)",
                   border: 1,
-                  borderColor: "rgba(255, 255, 255, 0.16)",
+                  borderColor: "rgba(255, 255, 255, 0.14)",
                   borderRadius: 1,
                   color: "#fff",
                   display: "flex",
@@ -355,7 +308,11 @@ export default function Home() {
                   py: 1.5,
                 }}
               >
-                <Chip label={kind} size="small" sx={{ bgcolor: "#fff8e5", fontWeight: 800 }} />
+                <Chip
+                  label={kind}
+                  size="small"
+                  sx={{ bgcolor: "secondary.main", color: "secondary.contrastText", fontWeight: 800 }}
+                />
                 <Typography sx={{ fontWeight: 700 }}>{name}</Typography>
               </Paper>
             ))}
