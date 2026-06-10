@@ -55,12 +55,23 @@ const pips = [
   ["30362", "Snapshot"],
 ];
 
+const sectionSx = {
+  px: { xs: 2, sm: 3 },
+  width: "100%",
+};
+
 export default function Home() {
   return (
     <Box component="main">
       <AppBar position="static" elevation={0} color="transparent">
-        <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{ minHeight: 76, gap: 3 }}>
+        <Container maxWidth="lg" sx={sectionSx}>
+          <Toolbar
+            disableGutters
+            sx={{
+              gap: { xs: 1.5, sm: 3 },
+              minHeight: 76,
+            }}
+          >
             <Link
               href="#top"
               underline="none"
@@ -84,13 +95,13 @@ export default function Home() {
               />
               Pontmore
             </Link>
-            <Stack component="nav" direction="row" spacing={1} sx={{ ml: "auto" }}>
+            <Stack component="nav" direction="row" spacing={0.25} sx={{ ml: "auto" }}>
               {[
                 ["Protocol", "#protocol"],
                 ["Build", "#build"],
                 ["Start", "#start"],
               ].map(([label, href]) => (
-                <Button key={href} component="a" href={href} color="inherit" size="small">
+                <Button key={href} component="a" href={href} color="inherit" size="small" sx={{ minWidth: "auto", px: { xs: 0.75, sm: 1 } }}>
                   {label}
                 </Button>
               ))}
@@ -105,14 +116,26 @@ export default function Home() {
         component="section"
         sx={{
           alignItems: "center",
-          display: "grid",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           gap: { xs: 5, md: 7 },
-          gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) minmax(360px, 520px)" },
+          justifyContent: "space-between",
           minHeight: { xs: "auto", md: "calc(100vh - 76px)" },
+          ...sectionSx,
           py: { xs: 7, md: 10 },
         }}
       >
-        <Stack spacing={3} sx={{ maxWidth: 680 }}>
+        <Stack
+          spacing={3}
+          sx={{
+            alignItems: "flex-start",
+            maxWidth: 680,
+            minWidth: 0,
+            mx: { xs: "auto", md: 0 },
+            textAlign: "left",
+            width: { xs: "100%", md: "auto" },
+          }}
+        >
           <Typography sx={{ color: "primary.main", fontSize: 13, fontWeight: 800, textTransform: "uppercase" }}>
             Nostr-native swap coordination
           </Typography>
@@ -120,10 +143,10 @@ export default function Home() {
             component="h1"
             variant="h1"
             sx={{
-              fontSize: { xs: 46, sm: 64, md: 82 },
+              fontSize: { xs: 39, sm: 64, md: 82 },
               fontWeight: 800,
               letterSpacing: 0,
-              lineHeight: 0.95,
+              lineHeight: { xs: 1, md: 0.95 },
             }}
           >
             Open rails for agents, escrow, and Bitcoin-fiat swaps.
@@ -141,6 +164,7 @@ export default function Home() {
               size="large"
               variant="contained"
               startIcon={<GitHubIcon />}
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               PROTOCOL DEFINITION
             </Button>
@@ -150,6 +174,7 @@ export default function Home() {
               size="large"
               variant="outlined"
               startIcon={<ArrowOutwardIcon />}
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               PROOF OF CONCEPT
             </Button>
@@ -166,7 +191,9 @@ export default function Home() {
             borderColor: "divider",
             borderRadius: 1,
             boxShadow: "0 24px 70px rgba(28, 36, 29, 0.14)",
+            mx: { xs: "auto", md: 0 },
             p: 2.5,
+            width: { xs: "100%", md: 520 },
           }}
         >
           <AlignedRow left="public event rail" right="Nostr" rightColor="primary.main" />
@@ -181,10 +208,10 @@ export default function Home() {
                   border: 1,
                   borderColor: "divider",
                   borderRadius: 1,
-                  display: "grid",
+                  display: "flex",
                   gap: 2,
-                  gridTemplateColumns: "44px 1fr",
                   minHeight: 58,
+                  minWidth: 0,
                   px: 1.5,
                   py: 1.25,
                 }}
@@ -192,7 +219,7 @@ export default function Home() {
                 <Typography sx={{ color: "text.secondary", fontSize: 12, fontWeight: 800 }}>
                   {String(index + 1).padStart(2, "0")}
                 </Typography>
-                <Typography sx={{ fontSize: 17, fontWeight: 800 }}>
+                <Typography sx={{ fontSize: { xs: 15, sm: 17 }, fontWeight: 800, minWidth: 0 }}>
                   {item}
                 </Typography>
               </Paper>
@@ -223,14 +250,15 @@ export default function Home() {
         maxWidth="lg"
         component="section"
         sx={{
-          alignItems: "end",
-          display: "grid",
+          alignItems: { xs: "flex-start", md: "flex-end" },
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           gap: 4.5,
-          gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.8fr) minmax(0, 1fr)" },
+          ...sectionSx,
           py: { xs: 6, md: 8 },
         }}
       >
-        <Box>
+          <Box sx={{ flex: { md: "0 1 42%" }, minWidth: 0, textAlign: "left", width: "100%" }}>
           <Typography sx={{ color: "primary.main", fontSize: 13, fontWeight: 800, textTransform: "uppercase" }}>
             Protocol shape
           </Typography>
@@ -238,23 +266,31 @@ export default function Home() {
             Small core, explicit boundaries.
           </Typography>
         </Box>
-        <Typography sx={{ color: "text.secondary", fontSize: 18, lineHeight: 1.6 }}>
+        <Typography sx={{ color: "text.secondary", flex: { md: "1 1 0" }, fontSize: 18, lineHeight: 1.6, minWidth: 0, textAlign: "left" }}>
           Pontmore separates public coordination from private execution data. Discovery, escrow
           compatibility, swap state, and dispute markers are visible and portable. Raw payment
           instructions and sensitive proof move through a companion private message lane.
         </Typography>
       </Container>
 
-      <Container maxWidth="lg" component="section" sx={{ pb: { xs: 6, md: 8 } }}>
+      <Container maxWidth="lg" component="section" sx={{ ...sectionSx, pb: { xs: 6, md: 8 } }}>
         <Box
           sx={{
-            display: "grid",
+            display: "flex",
+            flexWrap: "wrap",
             gap: 1.75,
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", lg: "repeat(4, minmax(0, 1fr))" },
           }}
         >
           {primitives.map((item) => (
-            <Card key={item.label} variant="outlined" sx={{ minHeight: { lg: 260 } }}>
+            <Card
+              key={item.label}
+              variant="outlined"
+              sx={{
+                flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 8px)", lg: "1 1 0" },
+                minHeight: { lg: 260 },
+                minWidth: 0,
+              }}
+            >
               <CardContent>
                 <Chip label={item.label} size="small" variant="outlined" />
                 <Typography component="h3" sx={{ fontSize: 20, fontWeight: 800, mt: 1.5 }}>
@@ -274,13 +310,15 @@ export default function Home() {
           maxWidth="lg"
           sx={{
             alignItems: "center",
-            display: "grid",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
             gap: 5,
-            gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) minmax(300px, 430px)" },
+            justifyContent: "space-between",
+            ...sectionSx,
             py: { xs: 6, md: 9.5 },
           }}
         >
-          <Box>
+          <Box sx={{ flex: "1 1 0", minWidth: 0, width: "100%" }}>
             <Typography sx={{ color: "#9bd2ff", fontSize: 13, fontWeight: 800, textTransform: "uppercase" }}>
               Implementation baseline
             </Typography>
@@ -298,7 +336,7 @@ export default function Home() {
               </Typography>
             </Stack>
           </Box>
-          <Stack spacing={1.25} aria-label="Pontmore event kinds">
+          <Stack spacing={1.25} aria-label="Pontmore event kinds" sx={{ flex: { md: "0 0 430px" }, width: "100%" }}>
             {pips.map(([kind, name]) => (
               <Paper
                 key={kind}
@@ -330,14 +368,16 @@ export default function Home() {
         maxWidth="lg"
         component="section"
         sx={{
-          display: "grid",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           gap: 5,
-          gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) minmax(280px, 380px)" },
+          justifyContent: "space-between",
+          ...sectionSx,
           pb: 11,
           pt: 4,
         }}
       >
-        <Box>
+        <Box sx={{ flex: "1 1 0", minWidth: 0 }}>
           <Typography sx={{ color: "primary.main", fontSize: 13, fontWeight: 800, textTransform: "uppercase" }}>
             Where to begin
           </Typography>
@@ -350,7 +390,7 @@ export default function Home() {
             discovering Pontmore events on Nostr relays.
           </Typography>
         </Box>
-        <Stack spacing={1.5}>
+        <Stack spacing={1.5} sx={{ flex: { md: "0 0 380px" }, width: { xs: "100%", md: 380 } }}>
           {[
             ["Protocol specs", "https://github.com/pontmore/protocol"],
             ["Next.js proof of concept", "https://github.com/pontmore/nextjs-pontmore"],
@@ -398,29 +438,50 @@ function AlignedRow({
         border: 1,
         borderColor: "divider",
         borderRadius: 1,
-        display: "grid",
-        gap: 2,
-        gridTemplateColumns: "minmax(96px, 1fr) auto minmax(96px, 1fr)",
+        display: "flex",
+        flexWrap: "nowrap",
+        gap: { xs: 1, sm: 2 },
+        justifyContent: "space-between",
         mt: large ? 1.5 : 0,
         p: 1.75,
       }}
     >
-      <Typography sx={{ color: "text.secondary", fontSize: 12, fontWeight: 800, textTransform: "uppercase" }}>
+      <Typography
+        sx={{
+          color: "text.secondary",
+          flex: "1 1 0",
+          fontSize: { xs: 10, sm: 12 },
+          fontWeight: 800,
+          minWidth: 0,
+          textTransform: "uppercase",
+        }}
+      >
         {left}
       </Typography>
       {center ? (
-        <Typography sx={{ color: centerColor, fontSize: large ? 34 : 24, fontWeight: 800, justifySelf: "center" }}>
+        <Typography
+          sx={{
+            color: centerColor,
+            flex: "0 0 auto",
+            fontSize: large ? { xs: 30, sm: 34 } : 24,
+            fontWeight: 800,
+            lineHeight: 1,
+            textAlign: "center",
+          }}
+        >
           {center}
         </Typography>
       ) : (
-        <Box />
+        <Box sx={{ flex: "0 0 auto" }} />
       )}
       <Typography
         sx={{
           color: rightColor || "text.secondary",
-          fontSize: large ? 12 : 24,
+          flex: "1 1 0",
+          fontSize: large ? { xs: 10, sm: 12 } : { xs: 20, sm: 24 },
           fontWeight: 800,
-          justifySelf: "end",
+          minWidth: 0,
+          textAlign: "right",
           textTransform: large ? "uppercase" : "none",
         }}
       >
