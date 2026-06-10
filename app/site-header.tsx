@@ -30,7 +30,7 @@ export function SiteHeader() {
   }
 
   return (
-    <AppBar position="static" elevation={0} color="transparent">
+    <AppBar position="sticky" elevation={0} color="transparent">
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 }, width: "100%" }}>
         <Toolbar
           disableGutters
