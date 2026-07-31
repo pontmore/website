@@ -20,6 +20,25 @@ npm run typecheck
 npm run build
 ```
 
+## Project directory
+
+Projects built on Pontmore are listed from `projects.json`. To add a project, open a pull request with a new object in the `projects` array:
+
+```json
+{
+  "name": "Your Project",
+  "description": "One or two sentences about how it uses Pontmore.",
+  "links": {
+    "website": "https://example.com",
+    "github": "https://github.com/example/project",
+    "nostr": "https://njump.me/npub...",
+    "x": "https://x.com/example"
+  }
+}
+```
+
+`name` and `description` are required. Link keys are optional; use any of `website`, `github`, `nostr`, and `x`.
+
 ## Docker
 
 Build and run the production image locally:

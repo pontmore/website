@@ -1,5 +1,8 @@
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import LanguageIcon from "@mui/icons-material/Language";
+import XIcon from "@mui/icons-material/X";
 import {
   Box,
   Button,
@@ -7,11 +10,23 @@ import {
   CardContent,
   Chip,
   Container,
+  IconButton,
   Paper,
   Stack,
   Typography,
 } from "@mui/material";
 import { SiteHeader } from "./site-header";
+import projectsData from "../projects.json";
+
+type ProjectLinkKey = "github" | "nostr" | "x" | "website";
+
+type Project = {
+  name: string;
+  description: string;
+  links?: Partial<Record<ProjectLinkKey, string>>;
+};
+
+const projects = projectsData.projects as Project[];
 
 const primitives = [
   {
@@ -52,6 +67,19 @@ const pips = [
   ["7302", "Evidence"],
   ["30362", "Snapshot"],
 ];
+
+const projectLinkMeta: Record<
+  ProjectLinkKey,
+  {
+    label: string;
+    icon: React.ReactElement;
+  }
+> = {
+  website: { label: "Website", icon: <LanguageIcon /> },
+  github: { label: "GitHub", icon: <GitHubIcon /> },
+  nostr: { label: "Nostr", icon: <AlternateEmailIcon /> },
+  x: { label: "X", icon: <XIcon /> },
+};
 
 const sectionSx = {
   px: { xs: 2, sm: 3 },
@@ -288,87 +316,193 @@ export default function Home() {
                 every operator one by one.
               </Typography>
             </Stack>
+            <Box sx={{ borderTop: 1, borderColor: "rgba(255, 255, 255, 0.14)", mt: 5, pt: 4 }}>
+              <Typography sx={{ color: "#9bd2ff", fontSize: 13, fontWeight: 800, textTransform: "uppercase" }}>
+                Where to begin
+              </Typography>
+              <Typography component="h3" sx={{ fontSize: { xs: 27, md: 32 }, fontWeight: 800, lineHeight: 1.08, mt: 1.5 }}>
+                Read PIP-00 through PIP-03, then test against relays.
+              </Typography>
+              <Typography sx={{ color: "#d2ded6", fontSize: 18, lineHeight: 1.65, mt: 2 }}>
+                The current protocol core covers agent definitions, escrow descriptors, swap lifecycle
+                events, and dispute policy. The companion proof of concept demonstrates publishing and
+                discovering Pontmore events on Nostr relays.
+              </Typography>
+            </Box>
           </Box>
-          <Stack spacing={1.25} aria-label="Pontmore event kinds" sx={{ flex: { md: "0 0 430px" }, width: "100%" }}>
-            {pips.map(([kind, name]) => (
-              <Paper
-                key={kind}
-                elevation={0}
-                sx={{
-                  alignItems: "center",
-                  bgcolor: "rgba(255, 255, 255, 0.06)",
-                  border: 1,
-                  borderColor: "rgba(255, 255, 255, 0.14)",
-                  borderRadius: 1,
-                  color: "#fff",
-                  display: "flex",
-                  gap: 2,
-                  minHeight: 52,
-                  px: 1.75,
-                  py: 1.5,
-                }}
-              >
-                <Chip
-                  label={kind}
-                  size="small"
-                  sx={{ bgcolor: "secondary.main", color: "secondary.contrastText", fontWeight: 800 }}
-                />
-                <Typography sx={{ fontWeight: 700 }}>{name}</Typography>
-              </Paper>
-            ))}
+          <Stack spacing={3} sx={{ flex: { md: "0 0 430px" }, width: "100%" }}>
+            <Stack spacing={1.25} aria-label="Pontmore event kinds">
+              {pips.map(([kind, name]) => (
+                <Paper
+                  key={kind}
+                  elevation={0}
+                  sx={{
+                    alignItems: "center",
+                    bgcolor: "rgba(255, 255, 255, 0.06)",
+                    border: 1,
+                    borderColor: "rgba(255, 255, 255, 0.14)",
+                    borderRadius: 1,
+                    color: "#fff",
+                    display: "flex",
+                    gap: 2,
+                    minHeight: 52,
+                    px: 1.75,
+                    py: 1.5,
+                  }}
+                >
+                  <Chip
+                    label={kind}
+                    size="small"
+                    sx={{ bgcolor: "secondary.main", color: "secondary.contrastText", fontWeight: 800 }}
+                  />
+                  <Typography sx={{ fontWeight: 700 }}>{name}</Typography>
+                </Paper>
+              ))}
+            </Stack>
+            <Stack spacing={1.5}>
+              {[
+                ["Protocol specs", "https://github.com/pontmore/protocol"],
+                ["Next.js proof of concept", "https://github.com/pontmore/nextjs-pontmore"],
+                ["POC Docker image", "https://hub.docker.com/r/pontmore/nextjs-pontmore"],
+              ].map(([label, href]) => (
+                <Button
+                  key={href}
+                  component="a"
+                  href={href}
+                  variant="outlined"
+                  color="inherit"
+                  size="large"
+                  endIcon={<ArrowOutwardIcon />}
+                  sx={{ justifyContent: "space-between" }}
+                >
+                  {label}
+                </Button>
+              ))}
+            </Stack>
           </Stack>
         </Container>
       </Box>
 
-      <Container
-        id="start"
-        maxWidth="lg"
-        component="section"
+      <ProjectsSection />
+    </Box>
+  );
+}
+
+function ProjectsSection() {
+  return (
+    <Container
+      id="projects"
+      maxWidth="lg"
+      component="section"
+      sx={{
+        ...sectionSx,
+        pb: { xs: 8, md: 11 },
+        pt: { xs: 2, md: 4 },
+      }}
+    >
+      <Box
         sx={{
+          alignItems: { xs: "flex-start", md: "flex-end" },
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
-          gap: 5,
+          gap: 3,
           justifyContent: "space-between",
-          ...sectionSx,
-          pb: 11,
-          pt: 4,
+          mb: 3,
         }}
       >
-        <Box sx={{ flex: "1 1 0", minWidth: 0 }}>
+        <Box sx={{ maxWidth: 670, minWidth: 0 }}>
           <Typography sx={{ color: "primary.main", fontSize: 13, fontWeight: 800, textTransform: "uppercase" }}>
-            Where to begin
+            Built on Pontmore
           </Typography>
           <Typography component="h2" sx={{ fontSize: { xs: 31, md: 38 }, fontWeight: 800, lineHeight: 1.04, mt: 1.5 }}>
-            Read PIP-00 through PIP-03, then test against relays.
+            Projects using the protocol.
           </Typography>
           <Typography sx={{ color: "text.secondary", fontSize: 18, lineHeight: 1.6, mt: 2 }}>
-            The current protocol core covers agent definitions, escrow descriptors, swap lifecycle
-            events, and dispute policy. The companion proof of concept demonstrates publishing and
-            discovering Pontmore events on Nostr relays.
+            This directory is backed by a simple JSON file. Add your Pontmore project by opening a pull
+            request that updates <Box component="span" sx={{ color: "text.primary", fontWeight: 700 }}>projects.json</Box>.
           </Typography>
         </Box>
-        <Stack spacing={1.5} sx={{ flex: { md: "0 0 380px" }, width: { xs: "100%", md: 380 } }}>
-          {[
-            ["Protocol specs", "https://github.com/pontmore/protocol"],
-            ["Next.js proof of concept", "https://github.com/pontmore/nextjs-pontmore"],
-            ["POC Docker image", "https://hub.docker.com/r/pontmore/nextjs-pontmore"],
-          ].map(([label, href]) => (
-            <Button
-              key={href}
-              component="a"
-              href={href}
-              variant="outlined"
-              color="inherit"
-              size="large"
-              endIcon={<ArrowOutwardIcon />}
-              sx={{ justifyContent: "space-between" }}
+        <Button
+          component="a"
+          href="https://github.com/pontmore/website/blob/main/projects.json"
+          variant="outlined"
+          color="inherit"
+          endIcon={<ArrowOutwardIcon />}
+          sx={{ flexShrink: 0, width: { xs: "100%", sm: "auto" } }}
+        >
+          Edit projects.json
+        </Button>
+      </Box>
+
+      <Box
+        sx={{
+          display: "grid",
+          gap: 1.75,
+          gridTemplateColumns: { xs: "1fr", md: "repeat(2, minmax(0, 1fr))" },
+        }}
+      >
+        {projects.map((project) => (
+          <Card key={project.name} variant="outlined">
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+                minHeight: "100%",
+              }}
             >
-              {label}
-            </Button>
-          ))}
-        </Stack>
-      </Container>
-    </Box>
+              <Box>
+                <Typography component="h3" sx={{ fontSize: 22, fontWeight: 800 }}>
+                  {project.name}
+                </Typography>
+                <Typography sx={{ color: "text.secondary", lineHeight: 1.55, mt: 1.25 }}>
+                  {project.description}
+                </Typography>
+              </Box>
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: "auto" }}>
+                {(Object.entries(project.links ?? {}) as Array<[ProjectLinkKey, string]>).map(([key, href]) => {
+                  const meta = projectLinkMeta[key];
+
+                  if (!meta || !href) {
+                    return null;
+                  }
+
+                  if (key === "x") {
+                    return (
+                      <IconButton
+                        key={`${project.name}-${key}`}
+                        aria-label={`${project.name} on X`}
+                        component="a"
+                        href={href}
+                        size="small"
+                        color="inherit"
+                        sx={{ border: 1, borderColor: "currentColor", borderRadius: 1, height: 31, width: 31 }}
+                      >
+                        {meta.icon}
+                      </IconButton>
+                    );
+                  }
+
+                  return (
+                    <Button
+                      key={`${project.name}-${key}`}
+                      component="a"
+                      href={href}
+                      size="small"
+                      variant="outlined"
+                      color="inherit"
+                      startIcon={meta.icon}
+                    >
+                      {meta.label}
+                    </Button>
+                  );
+                })}
+              </Box>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+    </Container>
   );
 }
 

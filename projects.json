@@ -1,0 +1,21 @@
+{
+  "projects": [
+    {
+      "name": "Pontmore Next.js POC",
+      "description": "A proof-of-concept web app for publishing and discovering Pontmore agent, escrow, and swap lifecycle events on Nostr relays.",
+      "links": {
+        "website": "https://poc.pontmore.xyz",
+        "github": "https://github.com/pontmore/nextjs-pontmore",
+        "x": "https://x.com/pontmorexyz"
+      }
+    },
+    {
+      "name": "Minmo",
+      "description": "An open, Nostr-native network for Bitcoin access where agents publish capabilities and coordinate swaps through public event logs.",
+      "links": {
+        "website": "https://minmo.to/",
+        "x": "https://x.com/minmo_to"
+      }
+    }
+  ]
+}

@@ -18,7 +18,7 @@ import { useState } from "react";
 const navItems = [
   ["Protocol", "#protocol"],
   ["Build", "#build"],
-  ["Start", "#start"],
+  ["Projects", "#projects"],
 ];
 
 export function SiteHeader() {
