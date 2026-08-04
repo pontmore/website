@@ -23,6 +23,22 @@
       "links": {
         "website": "https://rollpot.pontmore.xyz/"
       }
+    },
+    {
+      "name": "Pontmore Escrow Client",
+      "description": "A proof-of-concept web client for a standalone escrow descriptor.",
+      "links": {
+        "website": "https://poc-escrow-client.netlify.app/",
+        "github": "https://github.com/mk-Denver/pontmore-escrow-client"
+      }
+    },
+    {
+      "name": "Pontpay",
+      "description": "A proof-of-concept web app for publishing and discovering Pontmore agent, standalone escrow, and swap lifecycle events on Nostr relays.",
+      "links": {
+        "website": "https://pontpay.netlify.app/",
+        "github": "https://github.com/mk-Denver/pontpay"
+      }
     }
   ]
 }
