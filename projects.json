@@ -16,6 +16,13 @@
         "website": "https://minmo.to/",
         "x": "https://x.com/minmo_to"
       }
+    },
+    {
+      "name": "Rollpot",
+      "description": "A two-player dice wager client backed by a Pontmore standalone escrow.",
+      "links": {
+        "website": "https://rollpot.pontmore.xyz/"
+      }
     }
   ]
 }
