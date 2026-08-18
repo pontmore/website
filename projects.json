@@ -39,6 +39,14 @@
         "website": "https://pontpay.netlify.app/",
         "github": "https://github.com/mk-Denver/pontpay"
       }
-    }
+    },
+      {
+      "name": "Escrow validator",
+      "description": "A proof-of-concept web app for for testing  escrow's validity as of PIP-01 of the Pontmomre Protocol.",
+      "links": {
+        "website": "https://test-escrows.netlify.app/",
+        "github": "https://github.com/mk-Denver/escrow-tester"
+      }
+     }
   ]
 }
