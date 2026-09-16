@@ -32,41 +32,39 @@ const projects = projectsData.projects as Project[];
 const primitives = [
   {
     label: "PIP-00",
-    title: "Agent identity",
-    body: "Agents publish public capability records from a Nostr pubkey, including markets, payment channels, limits, pricing policy, relays, and default escrow references.",
+    title: "Capability discovery",
+    body: "Agents publish a versioned capability index from a Nostr pubkey, with explicit references to the protocol resources each capability needs.",
   },
   {
     label: "PIP-01",
-    title: "Escrow declaration",
-    body: "Counterparties can inspect the escrow mechanism, supported settlement networks, funding rules, release rules, and reference format before a swap starts.",
+    title: "Escrow compatibility",
+    body: "Expiring descriptors identify an escrow mechanism, supported networks, and an optional machine-readable service schema before a coordination begins.",
   },
   {
     label: "PIP-02",
-    title: "Swap lifecycle",
-    body: "A swap is an immutable request plus append-only transition, evidence, dispute, note, and snapshot events. Public history stays authoritative.",
+    title: "Coordination event chains",
+    body: "An immutable root and cryptographically linked actions let compatible clients reconstruct authority, progress, disputes, and economic outcomes.",
   },
   {
-    label: "PIP-03",
-    title: "Dispute boundary",
-    body: "Disputes are visible at the protocol layer while sensitive invoices, bank details, screenshots, and internal policy payloads stay private by default.",
+    label: "PROFILE",
+    title: "Application semantics",
+    body: "Versioned profiles define domain terms, roles, actions, deadlines, and completion rules. The first experimental profile coordinates fiat/Bitcoin swaps.",
   },
 ];
 
 const flow = [
-  "discover agent",
-  "inspect escrow",
-  "request swap",
-  "append transitions",
-  "resolve outcome",
+  "discover capabilities",
+  "check escrow compatibility",
+  "pin terms and profile",
+  "append signed actions",
+  "reconstruct the outcome",
 ];
 
 const pips = [
-  ["30360", "Agent definition"],
+  ["30360", "Agent capability index"],
   ["30361", "Escrow descriptor"],
-  ["7300", "Swap request"],
-  ["7301", "Transition"],
-  ["7302", "Evidence"],
-  ["30362", "Snapshot"],
+  ["7300", "Coordination root"],
+  ["7301", "Coordination action"],
 ];
 
 const projectLinkMeta: Record<
@@ -119,7 +117,7 @@ export default function Home() {
           }}
         >
           <Typography sx={{ color: "primary.main", fontSize: 13, fontWeight: 800, textTransform: "uppercase" }}>
-            Nostr-native swap coordination
+            Nostr-native economic coordination
           </Typography>
           <Typography
             component="h1"
@@ -131,12 +129,12 @@ export default function Home() {
               lineHeight: { xs: 1, md: 0.95 },
             }}
           >
-            Open rails for agents, escrow, and Bitcoin-fiat swaps.
+            Open rails for agents to coordinate economic activity.
           </Typography>
           <Typography sx={{ color: "text.secondary", fontSize: { xs: 18, md: 20 }, lineHeight: 1.55 }}>
-            Pontmore gives swap operators and clients a shared public language for discovering agents,
-            declaring escrow assumptions, tracking swap state, and resolving disputes without making an
-            app account the root of identity.
+            Pontmore gives applications a shared, verifiable language for discovering Agent capabilities,
+            checking escrow compatibility, and reconstructing bounded coordinations from signed Nostr
+            events—without making an app account the root of identity.
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
             <Button
@@ -178,8 +176,8 @@ export default function Home() {
             width: { xs: "100%", md: 520 },
           }}
         >
-          <AlignedRow left="public event rail" right="Nostr" rightColor="primary.main" />
-          <AlignedRow left="npub" center="agent" right="d tag" centerColor="secondary.main" large />
+          <AlignedRow left="signed event chain" right="Nostr" rightColor="primary.main" />
+          <AlignedRow left="pubkey" center="Agent" right="profile" centerColor="secondary.main" large />
           <Stack spacing={1.25} sx={{ my: 2.25 }}>
             {flow.map((item, index) => (
               <Paper
@@ -218,10 +216,10 @@ export default function Home() {
             }}
           >
             <Typography sx={{ color: "text.secondary", fontSize: 12, fontWeight: 800, textTransform: "uppercase" }}>
-              private lane
+              application boundary
             </Typography>
             <Typography sx={{ fontWeight: 800, lineHeight: 1.35, mt: 1 }}>
-              Gift Wrap payloads for invoices, payout details, and sensitive evidence
+              Private payloads, service operations, business policy, and evidence evaluation
             </Typography>
           </Paper>
         </Paper>
@@ -249,9 +247,9 @@ export default function Home() {
           </Typography>
         </Box>
         <Typography sx={{ color: "text.secondary", flex: { md: "1 1 0" }, fontSize: 18, lineHeight: 1.6, minWidth: 0, textAlign: "left" }}>
-          Pontmore separates public coordination from private execution data. Discovery, escrow
-          compatibility, swap state, and dispute markers are visible and portable. Raw payment
-          instructions and sensitive proof move through a companion private message lane.
+          Pontmore standardizes the public facts needed to verify a coordination: participants,
+          authority, pinned terms, linked actions, and economic outcomes. Applications and services
+          retain execution, private payloads, business policy, reputation, and evidence evaluation.
         </Typography>
       </Container>
 
@@ -305,16 +303,16 @@ export default function Home() {
               Implementation baseline
             </Typography>
             <Typography component="h2" sx={{ fontSize: { xs: 31, md: 38 }, fontWeight: 800, lineHeight: 1.04, mt: 1.5 }}>
-              Publish capabilities once. Let compatible clients find them.
+              Choose a profile. Pin every version. Reconstruct the same result.
             </Typography>
             <Stack spacing={2.25} sx={{ mt: 3 }}>
               <Typography sx={{ color: "#d2ded6", fontSize: 18, lineHeight: 1.65 }}>
-                Agents declare their supported fiat currencies, payment channels, settlement networks,
-                regions, limits, and escrow references.
+                Agents publish versioned capability identifiers and references to the escrow or protocol
+                resources required to use them.
               </Typography>
               <Typography sx={{ color: "#d2ded6", fontSize: 18, lineHeight: 1.65 }}>
-                Clients can resolve the same Nostr addressable events from relays instead of integrating
-                every operator one by one.
+                Conforming clients validate the same signed roots and action chains, reject unsupported
+                versions or forks, and derive state without trusting relay order or private databases.
               </Typography>
             </Stack>
             <Box sx={{ borderTop: 1, borderColor: "rgba(255, 255, 255, 0.14)", mt: 5, pt: 4 }}>
@@ -322,12 +320,13 @@ export default function Home() {
                 Where to begin
               </Typography>
               <Typography component="h3" sx={{ fontSize: { xs: 27, md: 32 }, fontWeight: 800, lineHeight: 1.08, mt: 1.5 }}>
-                Read PIP-00 through PIP-03, then test against relays.
+                Select a conformance profile, then read its required specifications.
               </Typography>
               <Typography sx={{ color: "#d2ded6", fontSize: 18, lineHeight: 1.65, mt: 2 }}>
-                The current protocol core covers agent definitions, escrow descriptors, swap lifecycle
-                events, and dispute policy. The companion proof of concept demonstrates publishing and
-                discovering Pontmore events on Nostr relays.
+                The active draft has three PIPs for capability discovery, escrow compatibility, and
+                coordination event chains. Fiat/Bitcoin swap semantics live in the experimental
+                <Box component="span" sx={{ color: "#fff", fontWeight: 700 }}> pontmore/swap@1 </Box>
+                profile, not in the shared kernel.
               </Typography>
             </Box>
           </Box>
