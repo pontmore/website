@@ -2,7 +2,7 @@
 
 Next.js website for the Pontmore project.
 
-Pontmore is a Nostr-native protocol family for agent identity, capability discovery, escrow declaration, swap lifecycle coordination, and dispute boundaries.
+Pontmore is a Nostr-native protocol family for Agent identity, capability discovery, escrow compatibility, and reconstruction of bounded economic coordinations from signed event chains.
 
 ## Run
 

@@ -6,7 +6,7 @@ import { MuiThemeProvider } from "./mui-theme-provider";
 export const metadata: Metadata = {
   title: "Pontmore",
   description:
-    "Nostr-native protocol rails for agent discovery, escrow declaration, and swap coordination.",
+    "Nostr-native protocol rails for Agent capability discovery, escrow compatibility, and verifiable economic coordination.",
   icons: {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
