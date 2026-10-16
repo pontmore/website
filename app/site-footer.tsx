@@ -22,7 +22,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <span>An open protocol. Built on Nostr.</span>
-          <span>Made for a more connected Bitcoin.</span>
+          <span>Made for an open, connected economy.</span>
           <a href="#top">Back to top ↑</a>
         </div>
       </div>

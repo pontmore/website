@@ -62,7 +62,7 @@ Required repository secrets:
 
 ## Website experience
 
-The homepage introduces the protocol in plain language, then offers a five-step swap walkthrough with story/event views and a dispute/refund branch. All walkthrough data is illustrative and stays in the browser; it does not perform payments or verify real protocol events.
+The homepage introduces economic coordination across independent apps in plain language, then uses a Bitcoin swap as one example of the first experimental profile in a five-step walkthrough with story/event views and a dispute/refund branch. All walkthrough data is illustrative and stays in the browser; it does not perform payments or verify real protocol events.
 
 The protocol explorer links to the three canonical PIPs. The ecosystem directory is sourced from `projects.json`; optional presentation metadata and filters live in `app/protocol-interactives.tsx`. Listings are not conformance certifications.
 

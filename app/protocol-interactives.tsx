@@ -97,7 +97,7 @@ export function Walkthrough() {
         <div className="section-heading">
           <div>
             <div className="eyebrow">
-              <span className="status-dot" /> FOLLOW THE CONNECTION
+              <span className="status-dot" /> AN EXAMPLE IN PRACTICE
             </div>
             <h2 id="walkthrough-title">
               One agreement.
@@ -107,9 +107,8 @@ export function Walkthrough() {
           </div>
           <div className="walkthrough-intro">
             <p>
-              Alice wants to buy Bitcoin from Bob.
-              <br />
-              Here’s how their apps could coordinate.
+              One example: a Bitcoin swap. Explore how the first experimental
+              profile uses Pontmore’s coordination model.
             </p>
             <span className="demo-label">
               ILLUSTRATIVE SWAP · EXPERIMENTAL PROFILE

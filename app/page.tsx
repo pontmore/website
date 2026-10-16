@@ -29,7 +29,7 @@ export default function Home() {
             <p className="hero-description">
               Find each other. Agree on the rules. Move forward together.
               Pontmore gives people and apps a shared language to coordinate
-              around Bitcoin.
+              economic activity.
             </p>
             <div className="hero-actions">
               <a className="button button-dark" href="#how-it-works">
@@ -180,10 +180,9 @@ export default function Home() {
               next?
             </p>
             <p>
-              Pontmore makes the essential facts readable across compatible
-              apps: who is involved, what they agreed to, and which actions
-              followed. Each participant signs their part. The shared history
-              tells the story.
+              Applications define what is exchanged and how it moves. Pontmore
+              defines how participants discover capabilities, agree on terms,
+              and reconstruct what happened.
             </p>
             <a className="text-link" href="#protocol">
               Meet the building blocks <Arrow />

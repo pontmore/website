@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://pontmore.xyz"),
   title: "Pontmore — Coordinate. On open terms.",
   description:
-    "An open, Nostr-native protocol for discovering capabilities, checking escrow compatibility, and coordinating around Bitcoin through signed events.",
+    "An open, Nostr-native protocol for capability discovery, escrow compatibility, and verifiable economic coordination.",
   openGraph: {
     title: "Pontmore — Coordinate. On open terms.",
     description:
-      "A shared language for independent people and apps to coordinate around Bitcoin. Discover the protocol and explore an interactive swap walkthrough.",
+      "A shared language for independent people and apps to coordinate economic activity. Discover the protocol and explore an illustrative coordination walkthrough.",
     type: "website",
     url: "https://pontmore.xyz",
     siteName: "Pontmore",
