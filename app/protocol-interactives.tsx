@@ -344,7 +344,11 @@ export function Walkthrough() {
         <div className="walkthrough-bottom">
           <span>PUBLIC FACTS. PRIVATE DETAILS.</span>
           <p>{current.note}</p>
-          <a href={`${spec}profiles/swap-v1.md`}>
+          <a
+            href={`${spec}profiles/swap-v1.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Read the swap profile <Arrow diagonal />
           </a>
         </div>
@@ -455,7 +459,12 @@ export function ProtocolExplorer() {
         <div className="protocol-description">
           <h3>{block.subtitle}</h3>
           <p>{block.description}</p>
-          <a className="text-link" href={`${spec}${block.file}`}>
+          <a
+            className="text-link"
+            href={`${spec}${block.file}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Read {block.id} <Arrow diagonal />
           </a>
         </div>
@@ -488,6 +497,8 @@ export function ProtocolExplorer() {
         </p>
         <a
           href={`${spec}profiles/swap-v1.md`}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Read the experimental swap profile"
         >
           <Arrow diagonal />
@@ -596,6 +607,8 @@ export function ProjectDirectory() {
                   <a
                     key={type}
                     href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={`${project.name}: ${type === "website" ? "visit website" : type}`}
                   >
                     {type === "website"

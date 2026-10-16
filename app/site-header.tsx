@@ -27,6 +27,8 @@ export function SiteHeader() {
           <a
             className="header-github"
             href="https://github.com/pontmore/protocol"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Github />
             <span>Build with us</span>
@@ -60,7 +62,11 @@ export function SiteHeader() {
           <a href="#projects">
             Ecosystem <Arrow />
           </a>
-          <a href="https://github.com/pontmore/protocol">
+          <a
+            href="https://github.com/pontmore/protocol"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Build with us <Arrow diagonal />
           </a>
         </nav>

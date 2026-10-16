@@ -38,6 +38,8 @@ export default function Home() {
               <a
                 className="text-link"
                 href="https://github.com/pontmore/protocol"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Read the protocol <Arrow diagonal />
               </a>
@@ -262,6 +264,8 @@ export default function Home() {
           <a
             className="text-link project-contribute"
             href="https://github.com/pontmore/website/blob/main/projects.json"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Building something? Add your project <Arrow diagonal />
           </a>
@@ -350,10 +354,17 @@ export default function Home() {
               <a
                 className="button button-dark"
                 href="https://github.com/pontmore/protocol"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Github /> Explore the specification <Arrow diagonal />
               </a>
-              <a className="text-link" href="https://poc.pontmore.xyz">
+              <a
+                className="text-link"
+                href="https://poc.pontmore.xyz"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Try the discovery POC <Arrow diagonal />
               </a>
             </div>

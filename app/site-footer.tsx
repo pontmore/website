@@ -10,10 +10,18 @@ export function SiteFooter() {
             pontmore.
           </a>
           <p>Shared rules. Independent possibilities.</p>
-          <a href="https://github.com/pontmore/protocol">
+          <a
+            href="https://github.com/pontmore/protocol"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             GitHub <Arrow diagonal />
           </a>
-          <a href="https://x.com/pontmorexyz">
+          <a
+            href="https://x.com/pontmorexyz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Follow along <Arrow diagonal />
           </a>
         </div>
