@@ -1,114 +1,70 @@
 "use client";
 
-import MenuIcon from "@mui/icons-material/Menu";
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  IconButton,
-  Link,
-  Menu,
-  MenuItem,
-  Stack,
-  Toolbar,
-} from "@mui/material";
 import { useState } from "react";
-
-const navItems = [
-  ["Protocol", "#protocol"],
-  ["Build", "#build"],
-  ["Projects", "#projects"],
-];
+import { ThemeToggle } from "./theme-toggle";
+import { Arrow, Github, Mark } from "./icons";
 
 export function SiteHeader() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  function closeMenu() {
-    setAnchorEl(null);
-  }
-
+  const [open, setOpen] = useState(false);
   return (
-    <AppBar position="sticky" elevation={0} color="transparent">
-      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 }, width: "100%" }}>
-        <Toolbar
-          disableGutters
-          sx={{
-            gap: 2,
-            minHeight: 76,
-          }}
+    <header className="site-header">
+      <div className="header-inner wrap">
+        <a
+          className="wordmark"
+          href="#top"
+          aria-label="Pontmore home"
+          onClick={() => setOpen(false)}
         >
-          <Link
-            href="#top"
-            underline="none"
-            color="text.primary"
-            sx={{
-              alignItems: "center",
-              display: "inline-flex",
-              flexShrink: 0,
-              gap: 1.25,
-              fontWeight: 800,
-            }}
+          <Mark />
+          pontmore<span className="wordmark-dot">.</span>
+        </a>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <a href="#how-it-works">How it works</a>
+          <a href="#protocol">The protocol</a>
+          <a href="#projects">Ecosystem</a>
+        </nav>
+        <div className="header-actions">
+          <a
+            className="header-github"
+            href="https://github.com/pontmore/protocol"
           >
-            <Box
-              component="img"
-              src="/logo.svg"
-              alt=""
-              sx={{
-                bgcolor: "background.paper",
-                border: 1,
-                borderColor: "divider",
-                borderRadius: 1,
-                height: 38,
-                objectFit: "contain",
-                p: 0.5,
-                width: 38,
-              }}
-            />
-            Pontmore
-          </Link>
-
-          <Stack
-            component="nav"
-            direction="row"
-            spacing={1}
-            sx={{ display: { xs: "none", sm: "flex" }, ml: "auto" }}
+            <Github />
+            <span>Build with us</span>
+            <Arrow diagonal />
+          </a>
+          <ThemeToggle />
+          <button
+            className="menu-button"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen(!open)}
           >
-            {navItems.map(([label, href]) => (
-              <Button key={href} component="a" href={href} color="inherit" size="small">
-                {label}
-              </Button>
-            ))}
-          </Stack>
-
-          <IconButton
-            aria-controls={open ? "section-navigation" : undefined}
-            aria-expanded={open ? "true" : undefined}
-            aria-haspopup="true"
-            aria-label="Open section navigation"
-            color="inherit"
-            onClick={(event) => setAnchorEl(event.currentTarget)}
-            sx={{ display: { xs: "inline-flex", sm: "none" }, ml: "auto" }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="section-navigation"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={closeMenu}
-            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            transformOrigin={{ horizontal: "right", vertical: "top" }}
-          >
-            {navItems.map(([label, href]) => (
-              <MenuItem key={href} component="a" href={href} onClick={closeMenu}>
-                {label}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            {open ? "Close −" : "Menu +"}
+          </button>
+        </div>
+      </div>
+      {open && (
+        <nav
+          id="mobile-nav"
+          className="mobile-nav"
+          aria-label="Mobile navigation"
+          onClick={() => setOpen(false)}
+        >
+          <a href="#how-it-works">
+            How it works <Arrow />
+          </a>
+          <a href="#protocol">
+            The protocol <Arrow />
+          </a>
+          <a href="#projects">
+            Ecosystem <Arrow />
+          </a>
+          <a href="https://github.com/pontmore/protocol">
+            Build with us <Arrow diagonal />
+          </a>
+        </nav>
+      )}
+    </header>
   );
 }
